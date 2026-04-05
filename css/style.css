@@ -131,7 +131,7 @@ section[id]{scroll-margin-top:110px;}
 
 /* HERO */
 .hero{
-  min-height:60vh;
+  min-height:90vh;
   position:relative;
   display:flex;
   align-items:center;
