@@ -1,36 +1,16 @@
-// js/lead.js
-const WHATS_NUMBER = "5548996352829";
-const EMAIL_TO = "diego@informareconsultoria.com.br";
+const EMAIL_TO = "carlosagatis@gmail.com";
 
-function encode(text) {
-  return encodeURIComponent(text ?? "");
-}
-
-function buildMessage(data) {
-  return (
-`Olá, Diego! Gostaria de um orçamento/consultoria.
-
-Nome: ${data.nome}
-Empresa: ${data.empresa}
-WhatsApp: ${data.telefone}
-E-mail: ${data.email}
-Quantidade: ${data.quantidade} unidades
-
-Mensagem:
-${data.mensagem}`
-  );
-}
-
-document.getElementById("leadForm")?.addEventListener("submit", (e) => {
+document.getElementById("leadForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const form = e.target;
   const data = {
-    nome: document.getElementById("nome")?.value.trim(),
-    empresa: document.getElementById("empresa")?.value.trim(),
-    telefone: document.getElementById("telefone")?.value.trim(),
-    email: document.getElementById("email")?.value.trim(),
-    quantidade: document.getElementById("quantidade")?.value.trim(),
-    mensagem: document.getElementById("mensagem")?.value.trim(),
+    nome:       document.getElementById("nome").value.trim(),
+    empresa:    document.getElementById("empresa").value.trim(),
+    telefone:   document.getElementById("telefone").value.trim(),
+    email:      document.getElementById("email").value.trim(),
+    quantidade: document.getElementById("quantidade").value.trim(),
+    mensagem:   document.getElementById("mensagem").value.trim(),
   };
 
   const qtd = Number(data.quantidade || 0);
@@ -39,22 +19,71 @@ document.getElementById("leadForm")?.addEventListener("submit", (e) => {
     return;
   }
 
-  const text = buildMessage(data);
-  const url = `https://wa.me/${WHATS_NUMBER}?text=${encode(text)}`;
-  window.open(url, "_blank", "noopener");
+  const btn = form.querySelector("button[type=submit]");
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
+
+  try {
+    const payload = new FormData();
+    payload.append("Nome",       data.nome);
+    payload.append("Empresa",    data.empresa);
+    payload.append("WhatsApp",   data.telefone);
+    payload.append("E-mail",     data.email);
+    payload.append("Quantidade", `${data.quantidade} unidades`);
+    payload.append("Mensagem",   data.mensagem);
+    payload.append("_subject",   `Orçamento - ${data.nome} | ${data.quantidade} unidades`);
+    payload.append("_replyto",   data.email);
+    payload.append("_captcha",   "false");
+    payload.append("_template",  "table");
+
+    const res  = await fetch(`https://formsubmit.co/ajax/${EMAIL_TO}`, {
+      method:  "POST",
+      headers: { Accept: "application/json" },
+      body:    payload,
+    });
+    const json = await res.json();
+
+    if (res.ok && json.success === "true") {
+      showToast("Email enviado com sucesso!");
+      form.reset();
+    } else {
+      showToast("Falha no envio. Tente novamente.", true);
+    }
+  } catch {
+    showToast("Erro de conexão. Tente novamente.", true);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Enviar";
+  }
 });
 
-document.getElementById("sendEmailBtn")?.addEventListener("click", () => {
-  const data = {
-    nome: document.getElementById("nome")?.value.trim(),
-    empresa: document.getElementById("empresa")?.value.trim(),
-    telefone: document.getElementById("telefone")?.value.trim(),
-    email: document.getElementById("email")?.value.trim(),
-    quantidade: document.getElementById("quantidade")?.value.trim(),
-    mensagem: document.getElementById("mensagem")?.value.trim(),
-  };
+function showToast(msg, isError = false) {
+  document.getElementById("toast")?.remove();
 
-  const subject = encode("Contato via Landing Page - Orçamento/Consultoria");
-  const body = encode(buildMessage(data));
-  window.location.href = `mailto:${EMAIL_TO}?subject=${subject}&body=${body}`;
-});
+  const toast = document.createElement("div");
+  toast.id = "toast";
+  toast.textContent = msg;
+  Object.assign(toast.style, {
+    position:     "fixed",
+    bottom:       "2rem",
+    left:         "50%",
+    transform:    "translateX(-50%)",
+    background:   isError ? "#c0392b" : "#27ae60",
+    color:        "#fff",
+    padding:      "0.85rem 2rem",
+    borderRadius: "8px",
+    fontSize:     "1rem",
+    fontWeight:   "600",
+    zIndex:       "9999",
+    boxShadow:    "0 4px 16px rgba(0,0,0,0.25)",
+    opacity:      "0",
+    transition:   "opacity 0.3s ease",
+  });
+
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => { toast.style.opacity = "1"; });
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 400);
+  }, 4000);
+}
