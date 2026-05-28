@@ -15,7 +15,7 @@
 
 ---
 
-## 📋 Sobre o Projeto
+##  Sobre o Projeto
 
 Landing page desenvolvida para **Diego Pimentel**, representante comercial da **Cartonagem Batistense**, especialista em soluções de embalagens industriais em papel cartão e micro-ondulado desde 2012.
 
@@ -25,20 +25,20 @@ O objetivo da página é apresentar o perfil profissional, os serviços oferecid
 
 ## ✨ Funcionalidades
 
-- 🎯 **Hero section** com badge de apresentação e chamadas para ação
-- 👤 **Seção Sobre** com foto e histórico profissional
-- 🔧 **Metodologia de trabalho** com cards descritivos
-- 🏭 **Apresentação da Cartonagem Batistense** com vídeo incorporado
-- 📦 **Portfólio de produtos** com carrossel de imagens
-- 🎨 **Opções de mockup** com segundo carrossel
-- ✅ **Vantagens do atendimento** com ícones ilustrativos
-- 📞 **Seção de contato** com links diretos para WhatsApp e E-mail
-- 📍 **Localização** com endereços e mapa incorporado
-- 📱 **100% responsivo** para mobile, tablet e desktop
+-  **Hero section** com badge de apresentação e chamadas para ação
+-  **Seção Sobre** com foto e histórico profissional
+-  **Metodologia de trabalho** com cards descritivos
+-  **Apresentação da Cartonagem Batistense** com vídeo incorporado
+-  **Portfólio de produtos** com carrossel de imagens
+-  **Opções de mockup** com segundo carrossel
+-  **Vantagens do atendimento** com ícones ilustrativos
+-  **Seção de contato** com links diretos para WhatsApp e E-mail
+-  **Localização** com endereços e mapa incorporado
+-  **100% responsivo** para mobile, tablet e desktop
 
 ---
 
-## 🚀 Recursos Técnicos
+##  Recursos Técnicos
 
 | Recurso | Descrição |
 |---|---|
@@ -79,7 +79,7 @@ O objetivo da página é apresentar o perfil profissional, os serviços oferecid
 
 ---
 
-## 🎨 Identidade Visual
+##  Identidade Visual
 
 | Elemento | Valor |
 |---|---|
@@ -91,9 +91,10 @@ O objetivo da página é apresentar o perfil profissional, os serviços oferecid
 
 ---
 
-## 🖥️ Como Usar
+##  Como Usar
 
-Não há dependências ou processo de build. Basta clonar e abrir:
+Acesso atravéz do site:
+https://www.informareconsultoria.com.br/
 
 ```bash
 # Clone o repositório
@@ -109,7 +110,7 @@ open index.html     # macOS
 
 ---
 
-## 📱 Responsividade
+##  Responsividade
 
 | Breakpoint | Dispositivo alvo |
 |---|---|
@@ -156,11 +157,11 @@ open index.html     # macOS
 
 **Carlos Gatis**
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/seu-usuario)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/seu-perfil)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/CarlosGatis)
+
 
 ---
 
-*Feito com 💙 para Diego Pimentel · Embalagens Industriais*
+
 
 </div>
